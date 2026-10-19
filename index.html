@@ -27,8 +27,11 @@
     <meta property="og:image" content="https://i.ibb.co/PGvGZqNs/sdfasdfa.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="fb:app_id" content="1402787445338653">
     <!-- FontAwesome for recognizable icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Font for Handwritten Note Simulation -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://i.ibb.co/nMJ2ZzXv/favicon.png">
     <link rel="apple-touch-icon" href="https://i.ibb.co/nMJ2ZzXv/favicon.png">
     <style>
@@ -46,22 +49,33 @@
             color: #000000;
         }
 
+        /* Handwritten Font Styling for Sample Notes */
+        .handwritten-note {
+            font-family: 'Caveat', cursive, sans-serif;
+            font-size: 1.4rem;
+            line-height: 1.35;
+            color: #1e3a8a;
+        }
+
         /* High Contrast Mode Styles */
         body.hc-mode {
             background-color: #000000 !important;
             color: #ffff00 !important; /* Yellow on black is ideal for high contrast reading */
         }
-        body.hc-mode section, body.hc-mode header, body.hc-mode nav, body.hc-mode footer, body.hc-mode .bg-white, body.hc-mode .bg-blue-50, body.hc-mode .bg-gray-100, body.hc-mode .bg-gray-800, body.hc-mode .bg-green-100, body.hc-mode .bg-blue-100 {
+        body.hc-mode section, body.hc-mode header, body.hc-mode nav, body.hc-mode footer, body.hc-mode .bg-white, body.hc-mode .bg-blue-50, body.hc-mode .bg-gray-100, body.hc-mode .bg-gray-50, body.hc-mode .bg-gray-800, body.hc-mode .bg-green-100, body.hc-mode .bg-blue-100 {
             background-color: #000000 !important;
             border-color: #ffff00 !important;
         }
-        body.hc-mode h1, body.hc-mode h2, body.hc-mode h3, body.hc-mode p, body.hc-mode a, body.hc-mode span, body.hc-mode strong, body.hc-mode i, body.hc-mode label, body.hc-mode div, body.hc-mode li {
+        body.hc-mode h1, body.hc-mode h2, body.hc-mode h3, body.hc-mode h4, body.hc-mode p, body.hc-mode a, body.hc-mode span, body.hc-mode strong, body.hc-mode i, body.hc-mode label, body.hc-mode div, body.hc-mode li, body.hc-mode .handwritten-note {
             color: #ffff00 !important;
         }
-        body.hc-mode .bg-primary, body.hc-mode .bg-secondary, body.hc-mode button[type="submit"] {
+        body.hc-mode .bg-primary, body.hc-mode .bg-secondary, body.hc-mode button[type="submit"], body.hc-mode .slide-tab-active {
             background-color: #ffff00 !important;
             color: #000000 !important;
-            border: 2px solid #ffff00;
+            border: 2px solid #ffff00 !important;
+        }
+        body.hc-mode .slide-tab-active span, body.hc-mode .slide-tab-active i {
+            color: #000000 !important;
         }
         body.hc-mode input, body.hc-mode textarea {
             background-color: #000000 !important;
@@ -87,6 +101,31 @@
 
         function toggleHighContrast() {
             document.body.classList.toggle('hc-mode');
+        }
+
+        // Slideshow Logic (3 Filled Samples Only)
+        let currentNoteSlide = 0;
+        const totalNoteSlides = 3;
+
+        function showNoteSlide(index) {
+            if (index < 0) index = totalNoteSlides - 1;
+            if (index >= totalNoteSlides) index = 0;
+            currentNoteSlide = index;
+
+            for (let i = 0; i < totalNoteSlides; i++) {
+                const slideEl = document.getElementById('note-slide-' + i);
+                const tabEl = document.getElementById('note-tab-' + i);
+                if (slideEl) {
+                    slideEl.classList.toggle('hidden', i !== currentNoteSlide);
+                }
+                if (tabEl) {
+                    if (i === currentNoteSlide) {
+                        tabEl.className = "slide-tab-active bg-primary text-white font-extrabold px-5 py-3 rounded-xl shadow-md border-2 border-primary transition flex items-center gap-2 text-lg";
+                    } else {
+                        tabEl.className = "bg-white hover:bg-blue-50 text-gray-800 font-bold px-5 py-3 rounded-xl shadow-sm border-2 border-gray-300 transition flex items-center gap-2 text-lg";
+                    }
+                }
+            }
         }
     </script>
 </head>
@@ -124,6 +163,7 @@
                     <a href="#about" class="text-lg font-bold text-gray-700 hover:text-primary transition focus:underline">About</a>
                     <a href="#services" class="text-lg font-bold text-gray-700 hover:text-primary transition focus:underline">What We Do</a>
                     <a href="#value" class="text-lg font-bold text-gray-700 hover:text-primary transition focus:underline">Our Value</a>
+                    <a href="#sample-notes" class="text-lg font-bold text-gray-700 hover:text-primary transition focus:underline">Sample Notes</a>
                     <a href="#senior-scrollers" class="text-lg font-bold text-gray-700 hover:text-primary transition focus:underline">Senior Scrollers</a>
                     <a href="#faq" class="text-lg font-bold text-gray-700 hover:text-primary transition focus:underline">FAQ</a>
                     <a href="#contact" class="bg-primary hover:bg-secondary text-white text-lg font-bold py-3 px-6 rounded-lg shadow-lg transition border-2 border-transparent focus:border-black focus:outline-none focus:ring-4 focus:ring-blue-300">Book Appointment</a>
@@ -140,7 +180,7 @@
                     <i class="fas fa-map-marker-alt"></i> Proudly Serving Barrie, ON & Surrounding Areas
                 </div>
                 <h1 class="text-4xl lg:text-6xl font-extrabold leading-tight">Patient, Friendly Tech Help That Comes To You.</h1>
-                <p class="text-xl lg:text-2xl text-gray-800 font-medium">Frustrated with your phone, computer, printer, or Wi-Fi? You don't have to figure it out alone. We provide patient, jargon-free lessons and tech troubleshooting wherever you're most comfortable—at home, the library, or your local coffee shop.</p>
+                <p class="text-xl lg:text-2xl text-gray-800 font-medium">Struggling with a smartphone, computer, or Wi-Fi? We provide simple, jargon-free lessons and troubleshooting right in your home or at a local coffee shop.</p>
                 <div class="inline-block bg-green-100 border-2 border-green-500 text-green-900 px-4 py-2 rounded-lg font-bold text-xl shadow-sm">
                     <i class="fas fa-tag mr-2"></i> Flat Rate: $100 CAD per hour
                 </div>
@@ -298,6 +338,435 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Sample Customer Notes Slideshow Section -->
+    <section id="sample-notes" class="py-20 bg-gray-100 border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <div class="inline-flex items-center gap-2 bg-blue-100 border-2 border-primary text-primary px-4 py-1.5 rounded-full font-bold text-base mb-3">
+                    <i class="fas fa-file-alt"></i> Take-Home Guides Included With Every Visit
+                </div>
+                <h2 class="text-4xl font-extrabold border-b-4 border-primary inline-block pb-2">See Our Custom Step-by-Step Notes in Action</h2>
+                <p class="mt-4 text-xl text-gray-800 font-medium">
+                    Never worry about forgetting what we covered! Browse real examples of the customized instruction sheets we write out and leave behind for you at the end of every appointment.
+                </p>
+            </div>
+
+            <!-- Slide Selector Tabs -->
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-md border-2 border-gray-200 mb-8">
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button id="note-tab-0" onclick="showNoteSlide(0)" class="slide-tab-active bg-primary text-white font-extrabold px-5 py-3 rounded-xl shadow-md border-2 border-primary transition flex items-center gap-2 text-lg">
+                        <i class="fas fa-mobile-alt"></i> <span>Sample #1: iPhone & Photos</span>
+                    </button>
+                    <button id="note-tab-1" onclick="showNoteSlide(1)" class="bg-white hover:bg-blue-50 text-gray-800 font-bold px-5 py-3 rounded-xl shadow-sm border-2 border-gray-300 transition flex items-center gap-2 text-lg">
+                        <i class="fas fa-print"></i> <span>Sample #2: Printer & Wi-Fi</span>
+                    </button>
+                    <button id="note-tab-2" onclick="showNoteSlide(2)" class="bg-white hover:bg-blue-50 text-gray-800 font-bold px-5 py-3 rounded-xl shadow-sm border-2 border-gray-300 transition flex items-center gap-2 text-lg">
+                        <i class="fas fa-tv"></i> <span>Sample #3: Smart TV & Scams</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- SLIDE 1: Margaret Thompson (iPhone Photos & Email) -->
+            <div id="note-slide-0" class="note-sheet-card bg-white p-6 sm:p-10 rounded-2xl shadow-2xl border-4 border-gray-300 max-w-4xl mx-auto">
+                <!-- Letterhead -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-4 border-primary pb-4 mb-6 gap-4">
+                    <div class="flex items-center gap-3.5">
+                        <img src="LOGO - FINAL_2.jpg" alt="For Tech Help Logo" class="h-16 sm:h-20 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display:none;" class="items-center gap-3">
+                            <div class="flex items-center justify-center bg-primary text-white font-extrabold text-2xl h-14 w-14 rounded-xl shadow">FTH</div>
+                            <div class="flex flex-col">
+                                <span class="font-black text-2xl text-dark tracking-tight leading-none">FOR TECH HELP</span>
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mt-1">Friendly Tech Support</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sm:text-right text-sm space-y-1 w-full sm:w-auto">
+                        <div class="text-xl font-extrabold text-primary"><i class="fas fa-phone-alt mr-1"></i> 705-816-HELP (4357)</div>
+                        <div class="font-bold text-gray-800">contact@ForTech.Help | www.ForTech.Help</div>
+                        <div class="pt-2 flex sm:justify-end items-end gap-2">
+                            <span class="font-bold text-gray-700">Your Tech:</span>
+                            <span class="handwritten-note border-b-2 border-gray-800 px-4 pb-0.5 inline-block min-w-[130px] text-center">Mike</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Client Info Bar -->
+                <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 mb-6 grid grid-cols-1 md:grid-cols-12 gap-4">
+                    <div class="md:col-span-5">
+                        <span class="text-xs font-extrabold uppercase text-gray-500 block">Client Name</span>
+                        <div class="handwritten-note border-b-2 border-gray-400 pb-0.5">Margaret Thompson</div>
+                    </div>
+                    <div class="md:col-span-3">
+                        <span class="text-xs font-extrabold uppercase text-gray-500 block">Date</span>
+                        <div class="handwritten-note border-b-2 border-gray-400 pb-0.5">Oct 14, 2026</div>
+                    </div>
+                    <div class="md:col-span-4">
+                        <span class="text-xs font-extrabold uppercase text-gray-500 block">Device / Topic</span>
+                        <div class="handwritten-note border-b-2 border-gray-400 pb-0.5">iPhone — Emailing Photos</div>
+                    </div>
+                </div>
+
+                <!-- 6-Step Table -->
+                <div class="mb-6">
+                    <div class="bg-primary text-white font-extrabold px-4 py-2 rounded-t-xl flex justify-between items-center">
+                        <span><i class="fas fa-list-ol mr-2"></i> STEP-BY-STEP INSTRUCTIONS</span>
+                        <span class="text-xs uppercase tracking-wider opacity-90">How to Email Photos to Family</span>
+                    </div>
+                    <div class="border-2 border-t-0 border-gray-300 rounded-b-xl divide-y-2 divide-gray-200">
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">1</span>
+                            <p class="handwritten-note">Tap the multicolored <strong>"Photos"</strong> flower icon on your main home screen.</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">2</span>
+                            <p class="handwritten-note">Tap <strong>"Select"</strong> in the top-right corner, then tap each photo you want to send (a blue checkmark will appear).</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">3</span>
+                            <p class="handwritten-note">Tap the <strong>Share button</strong> in the bottom-left corner (looks like a square with an UP arrow <i class="fas fa-share-square"></i>).</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">4</span>
+                            <p class="handwritten-note">Tap the blue <strong>"Mail"</strong> envelope icon from the row of apps.</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">5</span>
+                            <p class="handwritten-note">In the <strong>"To:"</strong> box at the top, type Sarah's name and tap her email address when it pops up.</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">6</span>
+                            <p class="handwritten-note">Tap the blue <strong>Up Arrow circle</strong> in the top-right corner to send! (Select "Medium" size if asked).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notes & Quick Reference -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
+                    <div class="md:col-span-7 bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
+                        <h4 class="font-extrabold text-dark border-b-2 border-primary pb-1 mb-3 uppercase text-sm">
+                            <i class="fas fa-sticky-note text-primary mr-1"></i> Important Notes & Reminders
+                        </h4>
+                        <ul class="space-y-2 handwritten-note list-disc list-inside">
+                            <li>Removed the fake "Virus Alert" calendar pop-up — your phone is 100% clean and safe!</li>
+                            <li>Turned ON automatic <strong>iCloud Photo Backup</strong> so your photos save every night while charging.</li>
+                            <li>Made your text size 25% larger in Settings so emails are easier to read.</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-5 bg-blue-50 p-4 rounded-xl border-2 border-blue-200 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-extrabold text-primary border-b-2 border-blue-300 pb-1 mb-3 uppercase text-sm">
+                                <i class="fas fa-key mr-1"></i> Quick Reference Details
+                            </h4>
+                            <div class="space-y-2 text-sm">
+                                <div>
+                                    <span class="font-bold text-gray-600 block text-xs uppercase">Account / Service:</span>
+                                    <span class="handwritten-note">Apple iCloud & Rogers Email</span>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-gray-600 block text-xs uppercase">Username / Email:</span>
+                                    <span class="handwritten-note">m.thompson44@rogers.com</span>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-gray-600 block text-xs uppercase">Password Hint:</span>
+                                    <span class="handwritten-note">Written on page 3 of your blue address book in kitchen drawer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Follow-Up Tracker -->
+                <div class="bg-gray-100 border-2 border-primary rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="text-sm space-y-1">
+                        <div class="font-extrabold text-primary text-base">💙 Included With Your Appointment:</div>
+                        <p class="text-gray-800">• <strong>Backup Copy on File:</strong> Lost this sheet? Call us anytime for a free replacement copy.</p>
+                        <p class="text-gray-800">• <strong>2 Free 10-Min Follow-Up Calls:</strong> Have a quick question? Give us a call!</p>
+                    </div>
+                    <div class="bg-white border-2 border-gray-300 rounded-lg p-3 shrink-0 w-full sm:w-auto space-y-2">
+                        <div class="text-xs font-extrabold uppercase text-gray-500 text-center">Free Follow-Up Call Tracker</div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 border-2 border-primary bg-blue-100 text-primary flex items-center justify-center rounded font-bold text-xs">✓</span>
+                            <span class="text-xs font-bold">Call #1 Date:</span>
+                            <span class="handwritten-note border-b-2 border-gray-700 px-2 min-w-[110px]">Oct 17, 2026</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 border-2 border-primary rounded inline-block"></span>
+                            <span class="text-xs font-bold">Call #2 Date:</span>
+                            <span class="handwritten-note border-b-2 border-gray-400 px-2 min-w-[110px] text-gray-400">(1 Free Left)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: Robert & Helen Davies (Wireless Printer & Wi-Fi) -->
+            <div id="note-slide-1" class="hidden note-sheet-card bg-white p-6 sm:p-10 rounded-2xl shadow-2xl border-4 border-gray-300 max-w-4xl mx-auto">
+                <!-- Letterhead -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-4 border-primary pb-4 mb-6 gap-4">
+                    <div class="flex items-center gap-3.5">
+                        <img src="LOGO - FINAL_2.jpg" alt="For Tech Help Logo" class="h-16 sm:h-20 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display:none;" class="items-center gap-3">
+                            <div class="flex items-center justify-center bg-primary text-white font-extrabold text-2xl h-14 w-14 rounded-xl shadow">FTH</div>
+                            <div class="flex flex-col">
+                                <span class="font-black text-2xl text-dark tracking-tight leading-none">FOR TECH HELP</span>
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mt-1">Friendly Tech Support</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sm:text-right text-sm space-y-1 w-full sm:w-auto">
+                        <div class="text-xl font-extrabold text-primary"><i class="fas fa-phone-alt mr-1"></i> 705-816-HELP (4357)</div>
+                        <div class="font-bold text-gray-800">contact@ForTech.Help | www.ForTech.Help</div>
+                        <div class="pt-2 flex sm:justify-end items-end gap-2">
+                            <span class="font-bold text-gray-700">Your Tech:</span>
+                            <span class="handwritten-note border-b-2 border-gray-800 px-4 pb-0.5 inline-block min-w-[130px] text-center">Mike</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Client Info Bar -->
+                <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 mb-6 grid grid-cols-1 md:grid-cols-12 gap-4">
+                    <div class="md:col-span-5">
+                        <span class="text-xs font-extrabold uppercase text-gray-500 block">Client Name</span>
+                        <div class="handwritten-note border-b-2 border-gray-400 pb-0.5">Robert & Helen Davies</div>
+                    </div>
+                    <div class="md:col-span-3">
+                        <span class="text-xs font-extrabold uppercase text-gray-500 block">Date</span>
+                        <div class="handwritten-note border-b-2 border-gray-400 pb-0.5">Oct 16, 2026</div>
+                    </div>
+                    <div class="md:col-span-4">
+                        <span class="text-xs font-extrabold uppercase text-gray-500 block">Device / Topic</span>
+                        <div class="handwritten-note border-b-2 border-gray-400 pb-0.5">HP Printer & Laptop Wi-Fi</div>
+                    </div>
+                </div>
+
+                <!-- 6-Step Table -->
+                <div class="mb-6">
+                    <div class="bg-primary text-white font-extrabold px-4 py-2 rounded-t-xl flex justify-between items-center">
+                        <span><i class="fas fa-list-ol mr-2"></i> STEP-BY-STEP INSTRUCTIONS</span>
+                        <span class="text-xs uppercase tracking-wider opacity-90">Printing & Fixing "Printer Offline"</span>
+                    </div>
+                    <div class="border-2 border-t-0 border-gray-300 rounded-b-xl divide-y-2 divide-gray-200">
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">1</span>
+                            <p class="handwritten-note">Make sure the <strong>HP Printer is turned ON</strong> and the little blue Wi-Fi light on the front is solid (not blinking).</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">2</span>
+                            <p class="handwritten-note">On your Dell laptop, open the document, recipe, or email you want to print.</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">3</span>
+                            <p class="handwritten-note">Hold down the <strong>Ctrl</strong> key (bottom-left) and press the letter <strong>P</strong> key at the same time.</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">4</span>
+                            <p class="handwritten-note">Check that the top Printer box says <strong>"HP Envy 6000 (Ready)"</strong> — do NOT pick the one that says "Fax".</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">5</span>
+                            <p class="handwritten-note">Click the blue <strong>"Print"</strong> button at the bottom of the window.</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">6</span>
+                            <p class="handwritten-note"><strong>If it ever says "Offline":</strong> Turn the printer OFF using the back button, count to 10, and turn it back ON.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notes & Quick Reference -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
+                    <div class="md:col-span-7 bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
+                        <h4 class="font-extrabold text-dark border-b-2 border-primary pb-1 mb-3 uppercase text-sm">
+                            <i class="fas fa-sticky-note text-primary mr-1"></i> Important Notes & Reminders
+                        </h4>
+                        <ul class="space-y-2 handwritten-note list-disc list-inside">
+                            <li>Assigned a fixed IP address to your printer so Bell's modem won't disconnect it overnight.</li>
+                            <li>Your printer uses <strong>HP 67 Black</strong> and <strong>HP 67 Tri-Color</strong> ink cartridges.</li>
+                            <li>Put a shortcut called <strong>"Scanner"</strong> right in the middle of your desktop screen for scanning forms.</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-5 bg-blue-50 p-4 rounded-xl border-2 border-blue-200 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-extrabold text-primary border-b-2 border-blue-300 pb-1 mb-3 uppercase text-sm">
+                                <i class="fas fa-key mr-1"></i> Quick Reference Details
+                            </h4>
+                            <div class="space-y-2 text-sm">
+                                <div>
+                                    <span class="font-bold text-gray-600 block text-xs uppercase">Home Wi-Fi Network Name:</span>
+                                    <span class="handwritten-note">BELL492-Home</span>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-gray-600 block text-xs uppercase">Laptop Login PIN:</span>
+                                    <span class="handwritten-note">Same 4-digit year as your wedding anniversary</span>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-gray-600 block text-xs uppercase">Wi-Fi Password Hint:</span>
+                                    <span class="handwritten-note">Taped on the white card on the side of your Bell Modem</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Follow-Up Tracker -->
+                <div class="bg-gray-100 border-2 border-primary rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="text-sm space-y-1">
+                        <div class="font-extrabold text-primary text-base">💙 Included With Your Appointment:</div>
+                        <p class="text-gray-800">• <strong>Backup Copy on File:</strong> Lost this sheet? Call us anytime for a free replacement copy.</p>
+                        <p class="text-gray-800">• <strong>2 Free 10-Min Follow-Up Calls:</strong> Have a quick question? Give us a call!</p>
+                    </div>
+                    <div class="bg-white border-2 border-gray-300 rounded-lg p-3 shrink-0 w-full sm:w-auto space-y-2">
+                        <div class="text-xs font-extrabold uppercase text-gray-500 text-center">Free Follow-Up Call Tracker</div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 border-2 border-primary bg-blue-100 text-primary flex items-center justify-center rounded font-bold text-xs">✓</span>
+                            <span class="text-xs font-bold">Call #1 Date:</span>
+                            <span class="handwritten-note border-b-2 border-gray-700 px-2 min-w-[110px]">Oct 18, 2026</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 border-2 border-primary bg-blue-100 text-primary flex items-center justify-center rounded font-bold text-xs">✓</span>
+                            <span class="text-xs font-bold">Call #2 Date:</span>
+                            <span class="handwritten-note border-b-2 border-gray-700 px-2 min-w-[110px]">Oct 22, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: Arthur Kowalski (Smart TV & Scam Safety) -->
+            <div id="note-slide-2" class="hidden note-sheet-card bg-white p-6 sm:p-10 rounded-2xl shadow-2xl border-4 border-gray-300 max-w-4xl mx-auto">
+                <!-- Letterhead -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-4 border-primary pb-4 mb-6 gap-4">
+                    <div class="flex items-center gap-3.5">
+                        <img src="LOGO - FINAL_2.jpg" alt="For Tech Help Logo" class="h-16 sm:h-20 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display:none;" class="items-center gap-3">
+                            <div class="flex items-center justify-center bg-primary text-white font-extrabold text-2xl h-14 w-14 rounded-xl shadow">FTH</div>
+                            <div class="flex flex-col">
+                                <span class="font-black text-2xl text-dark tracking-tight leading-none">FOR TECH HELP</span>
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mt-1">Friendly Tech Support</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sm:text-right text-sm space-y-1 w-full sm:w-auto">
+                        <div class="text-xl font-extrabold text-primary"><i class="fas fa-phone-alt mr-1"></i> 705-816-HELP (4357)</div>
+                        <div class="font-bold text-gray-800">contact@ForTech.Help | www.ForTech.Help</div>
+                        <div class="pt-2 flex sm:justify-end items-end gap-2">
+                            <span class="font-bold text-gray-700">Your Tech:</span>
+                            <span class="handwritten-note border-b-2 border-gray-800 px-4 pb-0.5 inline-block min-w-[130px] text-center">Mike</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Client Info Bar -->
+                <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 mb-6 grid grid-cols-1 md:grid-cols-12 gap-4">
+                    <div class="md:col-span-5">
+                        <span class="text-xs font-extrabold uppercase text-gray-500 block">Client Name</span>
+                        <div class="handwritten-note border-b-2 border-gray-400 pb-0.5">Arthur Kowalski</div>
+                    </div>
+                    <div class="md:col-span-3">
+                        <span class="text-xs font-extrabold uppercase text-gray-500 block">Date</span>
+                        <div class="handwritten-note border-b-2 border-gray-400 pb-0.5">Oct 19, 2026</div>
+                    </div>
+                    <div class="md:col-span-4">
+                        <span class="text-xs font-extrabold uppercase text-gray-500 block">Device / Topic</span>
+                        <div class="handwritten-note border-b-2 border-gray-400 pb-0.5">Smart TV & Scam Safety</div>
+                    </div>
+                </div>
+
+                <!-- 6-Step Table -->
+                <div class="mb-6">
+                    <div class="bg-primary text-white font-extrabold px-4 py-2 rounded-t-xl flex justify-between items-center">
+                        <span><i class="fas fa-list-ol mr-2"></i> STEP-BY-STEP INSTRUCTIONS</span>
+                        <span class="text-xs uppercase tracking-wider opacity-90">Switching Between Cable TV & Netflix</span>
+                    </div>
+                    <div class="border-2 border-t-0 border-gray-300 rounded-b-xl divide-y-2 divide-gray-200">
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">1</span>
+                            <p class="handwritten-note">Pick up the <strong>Samsung TV Remote</strong> (the smaller black remote with the <strong>BLUE tape</strong> on the bottom).</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">2</span>
+                            <p class="handwritten-note">Press the <strong>Home button</strong> in the middle (looks like a little house <i class="fas fa-home"></i>) to bring up the bottom menu bar.</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">3</span>
+                            <p class="handwritten-note">Use the <strong>Left / Right circle ring arrows</strong> to highlight <strong>Netflix</strong> or <strong>YouTube</strong>, then press the center <strong>OK</strong> button.</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">4</span>
+                            <p class="handwritten-note"><strong>To go back to regular Cable TV:</strong> Press the <strong>House button</strong> again, scroll left to <strong>"Bell TV (HDMI 1)"</strong>, and press <strong>OK</strong>.</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">5</span>
+                            <p class="handwritten-note">Once Bell TV is back on screen, set down the Samsung remote and use your <strong>Bell Remote (RED tape)</strong> for channels.</p>
+                        </div>
+                        <div class="p-3.5 flex items-start gap-3.5">
+                            <span class="bg-primary text-white font-extrabold rounded-full w-8 h-8 flex items-center justify-center shrink-0 mt-1">6</span>
+                            <p class="handwritten-note">If the screen ever says "No Signal", press the <strong>Power button</strong> on the <strong>RED-taped Bell remote</strong> to wake up the cable box.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notes & Quick Reference -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
+                    <div class="md:col-span-7 bg-gray-50 p-4 rounded-xl border-2 border-gray-200">
+                        <h4 class="font-extrabold text-dark border-b-2 border-primary pb-1 mb-3 uppercase text-sm">
+                            <i class="fas fa-shield-alt text-primary mr-1"></i> Important Scam Safety Golden Rules
+                        </h4>
+                        <ul class="space-y-2 handwritten-note list-disc list-inside">
+                            <li><strong>Microsoft, Apple, Bell, and TD Bank</strong> will NEVER call you or pop up on screen asking for remote access or gift cards.</li>
+                            <li>If a loud warning ever locks up your computer screen, <strong>hold the physical power button for 5 seconds</strong> to turn it off, then call Mike!</li>
+                            <li>Turned on <strong>2-Step Verification (2FA)</strong> on your Gmail so nobody can log in without texting your cell phone first.</li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-5 bg-blue-50 p-4 rounded-xl border-2 border-blue-200 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-extrabold text-primary border-b-2 border-blue-300 pb-1 mb-3 uppercase text-sm">
+                                <i class="fas fa-key mr-1"></i> Quick Reference Details
+                            </h4>
+                            <div class="space-y-2 text-sm">
+                                <div>
+                                    <span class="font-bold text-gray-600 block text-xs uppercase">TV Remotes Color Code:</span>
+                                    <span class="handwritten-note">BLUE Tape = Netflix/TV | RED Tape = Bell Channels</span>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-gray-600 block text-xs uppercase">Netflix Email:</span>
+                                    <span class="handwritten-note">art.kowalski@gmail.com</span>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-gray-600 block text-xs uppercase">Password Hint:</span>
+                                    <span class="handwritten-note">First street you lived on + 1968 (in black binder by desk)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Follow-Up Tracker -->
+                <div class="bg-gray-100 border-2 border-primary rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="text-sm space-y-1">
+                        <div class="font-extrabold text-primary text-base">💙 Included With Your Appointment:</div>
+                        <p class="text-gray-800">• <strong>Backup Copy on File:</strong> Lost this sheet? Call us anytime for a free replacement copy.</p>
+                        <p class="text-gray-800">• <strong>2 Free 10-Min Follow-Up Calls:</strong> Have a quick question? Give us a call!</p>
+                    </div>
+                    <div class="bg-white border-2 border-gray-300 rounded-lg p-3 shrink-0 w-full sm:w-auto space-y-2">
+                        <div class="text-xs font-extrabold uppercase text-gray-500 text-center">Free Follow-Up Call Tracker</div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 border-2 border-primary rounded inline-block"></span>
+                            <span class="text-xs font-bold">Call #1 Date:</span>
+                            <span class="handwritten-note border-b-2 border-gray-400 px-2 min-w-[110px] text-gray-400">(Available)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 border-2 border-primary rounded inline-block"></span>
+                            <span class="text-xs font-bold">Call #2 Date:</span>
+                            <span class="handwritten-note border-b-2 border-gray-400 px-2 min-w-[110px] text-gray-400">(Available)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
