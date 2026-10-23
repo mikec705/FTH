@@ -22,7 +22,7 @@
     <!-- Open Graph / WhatsApp Preview -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="For Tech Help | Barrie, ON & Surrounding Areas">
-    <meta property="og:description" content="Patient, Friendly Tech Help That Comes To You in Barrie, ON and surrounding areas.">
+    <meta property="og:description" content="Patient, Friendly Tech Help That Comes To You or Helps Over the Phone in Barrie, ON and surrounding areas.">
     <meta property="og:url" content="https://fortech.help/">
     <meta property="og:image" content="https://i.ibb.co/PGvGZqNs/sdfasdfa.png">
     <meta property="og:image:width" content="1200">
@@ -77,7 +77,7 @@
         body.hc-mode .slide-tab-active span, body.hc-mode .slide-tab-active i {
             color: #000000 !important;
         }
-        body.hc-mode input, body.hc-mode textarea {
+        body.hc-mode input, body.hc-mode textarea, body.hc-mode select, body.hc-mode option {
             background-color: #000000 !important;
             color: #ffff00 !important;
             border: 2px solid #ffff00 !important;
@@ -179,14 +179,22 @@
                 <div class="inline-flex items-center gap-2 bg-blue-100 border-2 border-primary text-primary px-4 py-2 rounded-full font-bold text-lg shadow-sm">
                     <i class="fas fa-map-marker-alt"></i> Proudly Serving Barrie, ON & Surrounding Areas
                 </div>
-                <h1 class="text-4xl lg:text-6xl font-extrabold leading-tight">Patient, Friendly Tech Help That Comes To You.</h1>
-                <p class="text-xl lg:text-2xl text-gray-800 font-medium">Struggling with a smartphone, computer, or Wi-Fi? We provide simple, jargon-free lessons and troubleshooting right in your home or at a local coffee shop.</p>
-                <div class="inline-block bg-green-100 border-2 border-green-500 text-green-900 px-4 py-2 rounded-lg font-bold text-xl shadow-sm">
-                    <i class="fas fa-tag mr-2"></i> Flat Rate: $100 CAD per hour
+                <h1 class="text-4xl lg:text-6xl font-extrabold leading-tight">Patient, Friendly Tech Help—In Your Home or Over the Phone.</h1>
+                <p class="text-xl lg:text-2xl text-gray-800 font-medium">Struggling with a smartphone, computer, or Wi-Fi? We provide simple, jargon-free lessons and troubleshooting right in your home, at a local coffee shop, or conveniently over the phone.</p>
+                
+                <!-- Dual Pricing Badges -->
+                <div class="flex flex-col sm:flex-row flex-wrap gap-3 pt-1">
+                    <div class="inline-flex items-center bg-green-100 border-2 border-green-600 text-green-900 px-4 py-2.5 rounded-lg font-bold text-lg shadow-sm">
+                        <i class="fas fa-home mr-2 text-green-700"></i> On-Site Support: $100 CAD / hr
+                    </div>
+                    <div class="inline-flex items-center bg-blue-100 border-2 border-primary text-blue-900 px-4 py-2.5 rounded-lg font-bold text-lg shadow-sm">
+                        <i class="fas fa-phone-volume mr-2 text-primary"></i> Phone Support: $40 CAD / 30 mins
+                    </div>
                 </div>
+
                 <div class="pt-4 flex flex-col sm:flex-row gap-4">
                     <a href="#contact" class="bg-primary hover:bg-secondary text-white text-xl font-bold py-4 px-8 rounded-lg shadow-lg text-center transition flex items-center justify-center gap-2">
-                        <i class="fas fa-calendar-check"></i> Book a Lesson
+                        <i class="fas fa-calendar-check"></i> Book Support
                     </a>
                     <a href="tel:7058164357" class="bg-white border-4 border-primary text-primary hover:bg-gray-100 text-xl font-bold py-4 px-8 rounded-lg shadow text-center transition flex items-center justify-center gap-2">
                         <i class="fas fa-phone-alt"></i> 705-816-HELP (4357)
@@ -208,7 +216,7 @@
                 Hi, I'm <strong>Mike</strong>, the face behind <strong>For Tech Help</strong>. I started this service in <strong>Barrie, ON</strong> because I saw how frustrating modern technology can be. My goal is to make technology work for <em>you</em>, not the other way around. 
             </p>
             <p class="text-xl text-gray-700">
-                I specialize in helping <strong>everyone</strong> gain confidence with their devices. Whether you need a persistent virus removed, data transferred to a new phone, a home network configured, or just patient, step-by-step instructions on how to use email, I am here to help. No rushed appointments, no confusing tech jargon—just friendly, understandable support across Barrie and the surrounding areas.
+                I specialize in helping <strong>everyone</strong> gain confidence with their devices. Whether you need a persistent virus removed, data transferred to a new phone, a home network configured, or just patient, step-by-step instructions over the phone on how to use email, I am here to help. No rushed appointments, no confusing tech jargon—just friendly, understandable support across Barrie and the surrounding areas.
             </p>
         </div>
     </section>
@@ -219,7 +227,14 @@
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-extrabold border-b-4 border-primary inline-block pb-2">What We Do</h2>
                 <p class="mt-4 text-2xl text-gray-800 font-bold">Simple solutions for everyday technology problems.</p>
-                <p class="mt-2 text-xl text-primary font-bold">All services available for a flat rate of $100 CAD per hour.</p>
+                <div class="mt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <span class="bg-white border-2 border-primary text-primary px-5 py-2.5 rounded-xl font-extrabold text-xl shadow-sm">
+                        <i class="fas fa-car-side mr-2"></i> On-Site In-Person: $100 CAD / hour
+                    </span>
+                    <span class="bg-white border-2 border-primary text-primary px-5 py-2.5 rounded-xl font-extrabold text-xl shadow-sm">
+                        <i class="fas fa-phone-alt mr-2"></i> Phone Support: $40 CAD / half hour
+                    </span>
+                </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 
@@ -283,17 +298,17 @@
         </div>
     </section>
 
-    <!-- The $100/Hour Value Section -->
+    <!-- The $100/Hour & $40/Half-Hour Value Section -->
     <section id="value" class="py-20 bg-white border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-4xl font-extrabold border-b-4 border-primary inline-block pb-2">More Than Just an Hour of Tech Support</h2>
                 <p class="mt-4 text-2xl text-gray-800 font-medium">
-                    When you invest <strong>$100/hour</strong> with For Tech Help, you don't just get your problem fixed—you get peace of mind that lasts long after we leave.
+                    When you invest in an <strong>On-Site Visit ($100/hour)</strong> with For Tech Help, you don't just get your problem fixed—you get peace of mind that lasts long after we leave.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <!-- Value 1: Hands-On Support -->
                 <div class="bg-gray-100 p-8 rounded-xl border-2 border-gray-200 flex flex-col sm:flex-row items-start gap-6">
                     <div class="bg-primary text-white p-5 rounded-xl text-3xl shrink-0" aria-hidden="true">
@@ -334,8 +349,31 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold mb-2">2 Free 10-Minute Follow-Up Calls</h3>
-                        <p class="text-gray-800 text-lg">You are never left high and dry after an appointment. Every session includes two complimentary 10-minute follow-up phone calls to answer quick questions or refresh your memory.</p>
+                        <p class="text-gray-800 text-lg">You are never left high and dry after an appointment. Every on-site session includes two complimentary 10-minute follow-up phone calls to answer quick questions or refresh your memory.</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- Phone Support Callout Banner -->
+            <div class="bg-blue-50 p-8 rounded-2xl border-4 border-primary shadow-md flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                    <div class="bg-primary text-white p-6 rounded-2xl text-4xl shrink-0" aria-hidden="true">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="inline-block bg-blue-100 text-primary font-extrabold px-3 py-1 rounded-full text-sm uppercase tracking-wider border border-primary">
+                            Quick & Convenient Option
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-dark">Just Need Quick Help Over the Phone? ($40 / 30 Mins)</h3>
+                        <p class="text-gray-800 text-xl">
+                            Don't need a full home visit? Our <strong>Phone Support</strong> option is ideal for quick troubleshooting, guided step-by-step walkthroughs, account questions, or verifying suspicious emails and texts right over the phone.
+                        </p>
+                    </div>
+                </div>
+                <div class="shrink-0 w-full lg:w-auto">
+                    <a href="#contact" class="block w-full lg:w-auto bg-primary hover:bg-secondary text-white text-xl font-bold py-4 px-8 rounded-xl shadow-lg text-center transition">
+                        Book a Phone Session
+                    </a>
                 </div>
             </div>
         </div>
@@ -865,12 +903,16 @@
             <div class="space-y-6">
                 <div class="bg-gray-100 p-8 rounded-lg border-2 border-gray-200">
                     <h3 class="text-2xl font-bold text-dark mb-3"><i class="fas fa-question-circle text-primary mr-2" aria-hidden="true"></i> How much do you charge, and what is included?</h3>
-                    <p class="text-xl text-gray-800 font-medium">To keep things simple and completely transparent, I charge a flat rate of <strong>$100 CAD per hour</strong> for individual appointments. This includes hands-on support, customized written instructions left behind for you, a backup copy of your notes kept on file, and <strong>two free 10-minute follow-up phone calls</strong> so you never feel left on your own.</p>
+                    <p class="text-xl text-gray-800 font-medium mb-4">To keep things simple and completely transparent, we offer two straightforward options:</p>
+                    <ul class="space-y-3 text-xl text-gray-800 font-medium list-disc list-inside">
+                        <li><strong>On-Site In-Person Support ($100 CAD per hour):</strong> Includes hands-on support in your home or local meeting spot, customized written instructions left behind for you, a backup copy of your notes kept on file, and <strong>two free 10-minute follow-up phone calls</strong>.</li>
+                        <li><strong>Phone Support ($40 CAD per half hour):</strong> Perfect for smaller questions, guided step-by-step walkthroughs, or quick troubleshooting over the phone when a full home visit isn't needed.</li>
+                    </ul>
                 </div>
 
                 <div class="bg-gray-100 p-8 rounded-lg border-2 border-gray-200">
                     <h3 class="text-2xl font-bold text-dark mb-3"><i class="fas fa-question-circle text-primary mr-2" aria-hidden="true"></i> What areas do you serve?</h3>
-                    <p class="text-xl text-gray-800 font-medium">We proudly serve <strong>Barrie, Ontario and the surrounding areas</strong>! We come directly to your home, business, retirement residence, or can meet you at a local library or coffee shop.</p>
+                    <p class="text-xl text-gray-800 font-medium">For on-site appointments, we proudly serve <strong>Barrie, Ontario and the surrounding areas</strong>! We come directly to your home, business, retirement residence, or can meet you at a local library or coffee shop. For <strong>Phone Support</strong>, we can help you anywhere!</p>
                 </div>
                 
                 <div class="bg-gray-100 p-8 rounded-lg border-2 border-gray-200">
@@ -893,8 +935,12 @@
             <!-- Contact Info & Hours -->
             <div>
                 <h2 class="text-4xl font-extrabold border-b-4 border-blue-400 inline-block pb-2 mb-8 text-white">Get In Touch</h2>
-                <p class="text-2xl mb-4 font-medium">Ready to book a 1-on-1 appointment, inquire about a community event, or ask a question? Call, email, or fill out the form.</p>
-                <p class="text-xl mb-8 font-bold text-blue-300">1-on-1 Pricing: $100 CAD per hour (Includes Custom Notes & 2 Free Follow-Up Calls)</p>
+                <p class="text-2xl mb-6 font-medium">Ready to book an on-site visit, a 30-minute phone support session, or inquire about a community event? Call, email, or fill out the form.</p>
+                
+                <div class="bg-gray-800 p-5 rounded-xl border-2 border-blue-400 mb-8 space-y-2">
+                    <p class="text-xl font-bold text-blue-300"><i class="fas fa-home mr-2"></i> On-Site Support: $100 CAD / hour <span class="text-base font-normal text-gray-300 block sm:inline">(Includes Custom Notes & 2 Free Follow-Up Calls)</span></p>
+                    <p class="text-xl font-bold text-green-300"><i class="fas fa-phone-volume mr-2"></i> Phone Support: $40 CAD / half hour</p>
+                </div>
                 
                 <div class="space-y-8 text-xl">
                     <div class="flex items-center gap-6 bg-gray-800 p-4 rounded-lg border border-gray-700">
@@ -917,7 +963,7 @@
                         <div class="bg-primary p-5 rounded-full text-2xl" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
                         <div>
                             <div class="font-bold text-gray-400 text-sm uppercase tracking-wider mb-1">Service Area</div>
-                            <span class="font-bold text-xl">Serving Barrie, ON & Surrounding Areas <br><span class="text-lg font-normal text-gray-300">We come to you! (Home, Business, Library, Community Venue, or Coffee Shop)</span></span>
+                            <span class="font-bold text-xl">Serving Barrie, ON & Surrounding Areas <br><span class="text-lg font-normal text-gray-300">We come to you (Home, Business, Library, or Coffee Shop) or help by phone!</span></span>
                         </div>
                     </div>
                 </div>
@@ -941,6 +987,16 @@
                     <div>
                         <label for="phone" class="block text-2xl font-bold text-gray-900 mb-2">Your Phone Number</label>
                         <input type="tel" id="phone" name="phone" required class="w-full px-4 py-4 border-2 border-gray-400 rounded-lg text-xl focus:outline-none focus:border-primary focus:ring-4 focus:ring-blue-200 transition">
+                    </div>
+
+                    <div>
+                        <label for="support_type" class="block text-2xl font-bold text-gray-900 mb-2">Preferred Support Option</label>
+                        <select id="support_type" name="support_type" class="w-full px-4 py-4 border-2 border-gray-400 rounded-lg text-xl bg-white focus:outline-none focus:border-primary focus:ring-4 focus:ring-blue-200 transition font-bold text-gray-800">
+                            <option value="On-Site Support ($100/hr)">On-Site In-Person Support ($100 / hour)</option>
+                            <option value="Phone Support ($40/30min)">Phone Support ($40 / half hour)</option>
+                            <option value="Senior Scrollers Community Event">Senior Scrollers Community Event / Workshop</option>
+                            <option value="Not Sure / General Question">Not Sure Yet / General Question</option>
+                        </select>
                     </div>
 
                     <div>
